@@ -20,7 +20,6 @@ A responsive, user-friendly React app for managing tasks, powered by Material UI
 - Responsive and elegant Material UI layout
 - Local time formatting
 - Snackbar-based action toasts
-- Confirmation before deletion
 
 ---
 

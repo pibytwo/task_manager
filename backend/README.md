@@ -11,8 +11,6 @@ A simple task management REST API built using **FastAPI** and **SQLAlchemy**. Th
 - Update task status (`pending` / `completed`)  
 - Delete tasks  
 - Modular project structure (routers, models, CRUD ops, logger)  
-- CORS enabled  
-- Easy to test & extend  
 
 ---
 
@@ -115,7 +113,6 @@ pytest ./tests/
 
 - [ ] Add authentication layer  
 - [ ] Add DB migrations (e.g., Alembic)  
-- [ ] Add unit & integration tests  
-- [ ] Add Docker Compose support  
+- [ ] Add integration tests   
 
 ---
