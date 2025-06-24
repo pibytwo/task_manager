@@ -1,0 +1,4 @@
+fastapi==0.115.13
+SQLAlchemy==2.0.41
+uvicorn==0.34.3
+python-dotenv==1.1.0 # Not for Prod
