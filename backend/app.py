@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
 # Load .env only in development
-if os.getenv("ENV") == "DEV":
+if os.getenv("ENV") == "dev":
     import dotenv
     dotenv.load_dotenv()
 

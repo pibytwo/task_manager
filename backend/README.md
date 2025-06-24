@@ -23,7 +23,7 @@ A simple task management REST API built using **FastAPI** and **SQLAlchemy**. Th
 
 ```bash
 git clone https://github.com/pibytwo/task_manager.git
-cd task-manager/backend
+cd task_manager/backend
 ```
 
 ### 2. Create & Activate Virtual Environment
@@ -45,7 +45,7 @@ pip install -r requirements.txt
 Create a `.env` file in the root directory:
 
 ```ini
-ENV=DEV
+ENV=dev
 DB_NAME=tasks
 ```
 

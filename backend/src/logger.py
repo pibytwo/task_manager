@@ -7,8 +7,8 @@ import sys
 # Create logger instance
 logger = logging.getLogger("task-manager-app")
 
-env = os.getenv("ENV", "DEV")
-if env == "DEV":
+env = os.getenv("ENV", "dev")
+if env == "dev":
     logger.setLevel(logging.DEBUG)
 else:
     logger.setLevel(logging.INFO)
