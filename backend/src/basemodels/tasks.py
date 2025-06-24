@@ -16,11 +16,14 @@ class TaskBase(BaseModel):
     """TaskBase"""
 
     title: str = Field(
-        description="Title of the task", examples=["Medicines", "Homework"]
+        description="Title of the task",
+        examples=["Medicines", "Homework"],
+        min_length=1,
     )
     description: str = Field(
         description="Description of the task",
         examples=["Take your medicines", "Do your homework"],
+        min_length=1,
     )
 
 

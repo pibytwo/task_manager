@@ -5,10 +5,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-# Do not use dotenv in PRODUCTION
-import dotenv
-
-dotenv.load_dotenv()
+# Load .env only in development
+if os.getenv("ENV") == "DEV":
+    import dotenv
+    dotenv.load_dotenv()
 
 from src.router import app_router
 
@@ -18,7 +18,6 @@ app = FastAPI(
     version="2025.06.26",
 )
 
-app_port = int(os.getenv("APP_PORT", "8000"))
 origins = ["*"]  # Mention specific domains to restrict unwanted access
 
 app.add_middleware(
@@ -32,4 +31,4 @@ app.add_middleware(
 app.include_router(app_router)
 
 if __name__ == "__main__":
-    uvicorn.run("app:app", host="0.0.0.0", port=app_port, reload=True)
+    uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)

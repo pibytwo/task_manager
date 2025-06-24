@@ -1,11 +1,17 @@
 """Logger"""
 
+import os
 import logging
 import sys
 
 # Create logger instance
 logger = logging.getLogger("task-manager-app")
-logger.setLevel(logging.INFO)  # Change to DEBUG for more verbose output
+
+env = os.getenv("ENV", "DEV")
+if env == "DEV":
+    logger.setLevel(logging.DEBUG)
+else:
+    logger.setLevel(logging.INFO)
 
 # Create formatter
 formatter = logging.Formatter(
@@ -17,6 +23,6 @@ formatter = logging.Formatter(
 console_handler = logging.StreamHandler(sys.stdout)
 console_handler.setFormatter(formatter)
 
-# Avoid duplicate handlers in hot-reloading
+# Avoid duplicate handlers
 if not logger.handlers:
     logger.addHandler(console_handler)
