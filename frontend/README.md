@@ -37,7 +37,7 @@ A responsive, user-friendly React app for managing tasks, powered by Material UI
 
 ```bash
 git clone https://github.com/pibytwo/task_manager.git
-cd task-manager/frontend
+cd task_manager/frontend
 ```
 
 2. **Install Dependencies**
