@@ -3,9 +3,9 @@
 
 This is a full-stack **Task Manager** app with a React frontend and FastAPI backend, both containerized using Docker Compose.
 
-Refer to respective Readme files of each service (backend, frontend) for more details and dev setup.
+Ensure backend ENV is set to `uat` or `prod` as `dev` requires `python-dotenv` which is not part of `requirements.txt` if application is deployed using docker.
 
-Ensure backend ENV is set to `uat` or `prod` as `dev` requires `python-dotenv` which is not part of `requirements.txt`
+For `dev` setup and more details about each service (backend, frontend) refer to respective Readme files.
 
 ---
 
