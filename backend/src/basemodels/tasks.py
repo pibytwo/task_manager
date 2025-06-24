@@ -1,14 +1,14 @@
 """Basemodels for Tasks"""
 
 from datetime import datetime
-from typing import Literal
+from typing import List, Literal
 from pydantic import BaseModel, Field
 
 
 class Pagination(BaseModel):
     """Pagination"""
 
-    offset: int = Field(description="Offset", default=0)
+    page_no: int = Field(description="Page number", default=1, ge=1)
     page_size: int = Field(description="Page size", default=10, ge=1, le=50)
 
 
@@ -36,7 +36,8 @@ class TaskCreateRequest(TaskBase):
     """TaskCreateRequest"""
 
 
-
+class TaskUpdateRequest(Status):
+    """TaskUpdateRequest"""
 
 
 class TaskResponse(TaskBase, Status):
@@ -46,4 +47,8 @@ class TaskResponse(TaskBase, Status):
     created_at: datetime = Field(description="Task creation date")
 
 
+class PaginatedTaskResponse(BaseModel):
+    """PaginatedTaskResponse"""
 
+    total: int = Field(description="Total number of task records", examples=[100])
+    records: List[TaskResponse] = Field(description="Task details")
