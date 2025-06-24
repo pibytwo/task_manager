@@ -1,0 +1,101 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.main-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  background-color: #f8f9fa;
+  border-radius: 16px;
+  padding: 16px;
+  min-height: 85vh;
+}
+
+.paper-container {
+  padding: 24px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  min-height: 70vh;
+}
+
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.spinner-box,
+.empty-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-box {
+  height: 200px;
+}
+
+.empty-box {
+  height: 150px;
+}
+
+.status-chip {
+  cursor: pointer;
+  min-width: 100px;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.table-head {
+  background-color: #e3f2fd;
+}
+
+.task-row {
+  background-color: #fefefe;
+}
+
+.pagination {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
