@@ -15,7 +15,7 @@ from src.router import app_router
 
 app = FastAPI(
     title="Task Manager",
-    version="2025.06.26",
+    version="2025.06.25",
 )
 
 origins = ["*"]  # Mention specific domains to restrict unwanted access
