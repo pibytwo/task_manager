@@ -42,17 +42,21 @@
   width: 100%;
   max-width: 1200px;
   margin: 2rem auto;
-  background-color: #f8f9fa;
+  background-color: #0b233b;
   border-radius: 16px;
   padding: 16px;
-  min-height: 85vh;
+  min-height: 50vh;
 }
 
 .paper-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   padding: 24px;
   border-radius: 16px;
   background-color: #ffffff;
-  min-height: 70vh;
+  min-height: 50vh;
 }
 
 .header-bar {
@@ -89,6 +93,12 @@
   background-color: #e3f2fd;
 }
 
+.table-scroll-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 16px;
+}
+
 .task-row {
   background-color: #fefefe;
 }
@@ -97,5 +107,6 @@
   margin-top: 16px;
   display: flex;
   justify-content: center;
+  
 }
 

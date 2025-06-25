@@ -181,6 +181,7 @@ export default function TaskManagerApp() {
           </Box>
         ) : (
           <>
+          <Box className="table-scroll-wrapper">
             <Table size="small">
               <TableHead>
                 <TableRow className="table-head">
@@ -222,6 +223,7 @@ export default function TaskManagerApp() {
                 ))}
               </TableBody>
             </Table>
+            </Box>
             <Pagination
               count={Math.ceil(totalTasks / pageSize)}
               page={page}
@@ -286,7 +288,7 @@ export default function TaskManagerApp() {
       <Snackbar
         open={toast.open}
         message={toast.message}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
         TransitionComponent={Slide}
       />
     </Box>
