@@ -63,31 +63,6 @@ uvicorn app:app --host 0.0.0.0 --port 8000 --reload
 
 ---
 
-## Docker Setup
-
-### 1. Build the Docker Image
-
-```bash
-docker build -t task-manager-backend .
-```
-
-### 2. Run the Container with Environment Variable
-
-Ensure ENV is set to `uat` or `prod` as `dev` requires `python-dotenv` which is not part of `requirements.txt`
-
-```bash
-docker run -d \
-  --name task-app \
-  -p 8000:8000 \
-  -e ENV=uat \
-  -e DB_NAME=tasks \
-  -v $(pwd)/data:/app/data \
-  task-manager-backend
-```
-
-> Access API at: [http://localhost:8000/docs](http://localhost:8000/docs)
-
----
 
 ## Run Test Cases
 
