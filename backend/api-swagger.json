@@ -1,0 +1,307 @@
+{
+  "openapi": "3.1.0",
+  "info": { "title": "Task Manager", "version": "2025.06.25" },
+  "paths": {
+    "/api/v1/tasks": {
+      "post": {
+        "tags": ["Task Manager"],
+        "summary": "Create New Task",
+        "description": "Create new task",
+        "operationId": "create_new_task_api_v1_tasks_post",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/TaskCreateRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/TaskResponse" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Task Manager"],
+        "summary": "Fetch Tasks",
+        "description": "Fetch tasks",
+        "operationId": "fetch_tasks_api_v1_tasks_get",
+        "parameters": [
+          {
+            "name": "page_no",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "title": "Page No"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 50,
+              "minimum": 1,
+              "default": 10,
+              "title": "Page Size"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedTaskResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{task_id}": {
+      "put": {
+        "tags": ["Task Manager"],
+        "summary": "Update Task",
+        "description": "Update task status",
+        "operationId": "update_task_api_v1_tasks__task_id__put",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "Task ID",
+              "title": "Task Id"
+            },
+            "description": "Task ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/TaskUpdateRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/TaskResponse" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Task Manager"],
+        "summary": "Delete Task",
+        "description": "Delete a task",
+        "operationId": "delete_task_api_v1_tasks__task_id__delete",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "Task ID",
+              "title": "Task Id"
+            },
+            "description": "Task ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": { "application/json": { "schema": {} } }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/health_check": {
+      "get": {
+        "tags": ["Health Check"],
+        "summary": "Health Check",
+        "description": "Health check API",
+        "operationId": "health_check_api_v1_health_check_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": { "application/json": { "schema": {} } }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": { "$ref": "#/components/schemas/ValidationError" },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "PaginatedTaskResponse": {
+        "properties": {
+          "total": {
+            "type": "integer",
+            "title": "Total",
+            "description": "Total number of task records",
+            "examples": [100]
+          },
+          "records": {
+            "items": { "$ref": "#/components/schemas/TaskResponse" },
+            "type": "array",
+            "title": "Records",
+            "description": "Task details"
+          }
+        },
+        "type": "object",
+        "required": ["total", "records"],
+        "title": "PaginatedTaskResponse",
+        "description": "PaginatedTaskResponse"
+      },
+      "TaskCreateRequest": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Title",
+            "description": "Title of the task",
+            "examples": ["Medicines", "Homework"]
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Description",
+            "description": "Description of the task",
+            "examples": ["Take your medicines", "Do your homework"]
+          }
+        },
+        "type": "object",
+        "required": ["title", "description"],
+        "title": "TaskCreateRequest",
+        "description": "TaskCreateRequest"
+      },
+      "TaskResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["pending", "completed"],
+            "title": "Status",
+            "description": "Status of the task",
+            "examples": ["pending", "completed"]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Title",
+            "description": "Title of the task",
+            "examples": ["Medicines", "Homework"]
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Description",
+            "description": "Description of the task",
+            "examples": ["Take your medicines", "Do your homework"]
+          },
+          "id": { "type": "integer", "title": "Id", "description": "Task ID" },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At",
+            "description": "Task creation date"
+          }
+        },
+        "type": "object",
+        "required": ["status", "title", "description", "id", "created_at"],
+        "title": "TaskResponse",
+        "description": "TaskResponse"
+      },
+      "TaskUpdateRequest": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["pending", "completed"],
+            "title": "Status",
+            "description": "Status of the task",
+            "examples": ["pending", "completed"]
+          }
+        },
+        "type": "object",
+        "required": ["status"],
+        "title": "TaskUpdateRequest",
+        "description": "TaskUpdateRequest"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": { "anyOf": [{ "type": "string" }, { "type": "integer" }] },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": { "type": "string", "title": "Message" },
+          "type": { "type": "string", "title": "Error Type" }
+        },
+        "type": "object",
+        "required": ["loc", "msg", "type"],
+        "title": "ValidationError"
+      }
+    }
+  }
+}
